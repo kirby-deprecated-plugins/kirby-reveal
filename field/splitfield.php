@@ -9,8 +9,24 @@ class SplitfieldField extends TextareaField {
 			$buttons = $this->buttons();
 		}
 
-		$refresh = tpl::load( __DIR__ . DS . 'refresh.php', $data = array(
-		));
+		$locked = ( $this->lock() ) ? ' data-lock="true"' : '';
+		$show_html = ( $this->lock() ) ? ' data-show="true"' : '';
+
+		$padding = $this->padding();
+		if( isset( $padding ) && $padding === false ) {
+			$padding_html = ' data-padding="false"';
+		} else {
+			$padding_html = ' data-padding="true"';
+		}
+
+		$data = [
+			'fieldkey' => $this->name(),
+			'template' => $this->page()->template(),
+			'route' => c::get('plugin.splitfield.route', u() . '/splitfield'),
+			'delay' => c::get('plugin.splitfield.preview.delay', 2000 ),
+			'lock' =>  $this->lock(),
+			'bar' => $this->bar()
+		];
 
 		$html = '';
 		$html .= tpl::load( __DIR__ . DS . 'template.php', $data = array(
@@ -18,7 +34,10 @@ class SplitfieldField extends TextareaField {
 			'page' => $this->page(),
 			'value' => $value,
 			'buttons' => $buttons,
-			'refresh' => $refresh
+			'locked' => $locked,
+			'padding' => $padding_html,
+			'show' => $show_html,
+			'data' => json_encode($data)
 		));
 		return $html;
 	}
@@ -26,51 +45,9 @@ class SplitfieldField extends TextareaField {
 	public function element() {
 		$element = parent::element();
 		$element->data('field', 'splitfield');
+		$element->data('template', $this->page()->template());
+		$element->data('route', c::get('plugin.splitfield.route', u() . '/splitfield') );
+		$element->data('delay', c::get('plugin.splitfield.preview.delay', 2000 ) );
 		return $element;
-	}
-
-	// http://localhost/splitfield/panel/pages/home/field/test/splitfield/ajax/var1/var2
-	/*public function routes() {
-		return array(
-			array(
-				'pattern' => 'ajax/(:any)/(:any)',
-				'method'  => 'get',
-				'action' => function($var1, $var2) {
-
-					$html = '';
-					$html .= tpl::load( __DIR__ . DS . 'template-site.php', $data = array(
-						'field' => $this,
-						'page' => $this->page()
-					));
-
-					return $html;
-					echo $html;
-
-					return response::json( array( $var1, $var2 ) );
-				}
-			)
-		);
-	}*/
-
-	public function routes() {
-		return array(
-			array(
-				'pattern' => 'ajax',
-				'method'  => 'POST',
-				'action' => function() {
-
-					$html = '';
-					$html .= tpl::load( __DIR__ . DS . 'template-site.php', $data = array(
-						'field' => $this,
-						'page' => $this->page()
-					));
-
-					return $html;
-					echo $html;
-
-					return response::json( array( $var1, $var2 ) );
-				}
-			)
-		);
 	}
 }

@@ -1,7 +1,3 @@
-<?php
-#$form_data = kirby()->request()->data();
-#print_r($form_data);
-?>
 <style>
 h1 {
 	background: #eee;
@@ -430,4 +426,3 @@ textarea {
  
 
 </style>
-<?php echo kirbytext('# Vi provar<br># Vi provar<br># Vi provar<br># Vi provar<br># Vi provar<br>') ?>
