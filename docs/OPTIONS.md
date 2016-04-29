@@ -1,23 +1,19 @@
 # Options
 
-## Css root
+## Delay
 
-Set a css folder path where you want to place your textarea preview field css files.
+The preview is rendered live with Ajax. Every time it needs to be updated it need to do a server request.
 
-```
-c::set('plugin.textarea.preview.css.root', kirby()->roots()->assets() . DS . 'textarea-preview' )
-```
-
-## Css fallback
-
-Set a css file path to the css file you want as fallback, if no one is added for the field.
+The delay is set to 2 seconds, but it can be changed.
 
 ```
-c::set('plugin.textarea.preview.css.fallback', kirby()->roots()->plugins() . DS . 'textarea-preview' . DS . 'normalize.php' )
+c::set('plugin.reveal.delay', 2000 ); // Milliseconds
 ```
 
-## Route path
+- If you care about your server, set a high value.
+- If you care about speed, set a low value.
 
-```
-c::get('plugin.splitfield.route', 'splitfield' );
-```
+## More
+
+- [Css](docs/CSS.md)
+- [Template](docs/CSS.md)
