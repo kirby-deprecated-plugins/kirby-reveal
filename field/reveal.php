@@ -1,5 +1,5 @@
 <?php
-class SplitfieldField extends TextareaField {
+class revealField extends TextareaField {
 	public function content() {
 
 		$value = ($this->value() ) ? htmlentities($this->value(), ENT_NOQUOTES, 'UTF-8') : false;
@@ -7,6 +7,7 @@ class SplitfieldField extends TextareaField {
 
 		if($this->buttons and !$this->readonly) {
 			$buttons = $this->buttons();
+			$buttons = str_replace('textarea', 'reveal', $buttons);
 		}
 
 		$locked = ( $this->lock() ) ? ' data-lock="true"' : '';
@@ -22,8 +23,8 @@ class SplitfieldField extends TextareaField {
 		$data = [
 			'fieldkey' => $this->name(),
 			'template' => $this->page()->template(),
-			'route' => c::get('plugin.splitfield.route', u() . '/splitfield'),
-			'delay' => c::get('plugin.splitfield.preview.delay', 2000 ),
+			'route' => u() . '/plugin.reveal.ajax',
+			'delay' => c::get('plugin.reveal.delay', 2000 ),
 			'lock' =>  $this->lock(),
 			'bar' => $this->bar()
 		];
@@ -44,10 +45,12 @@ class SplitfieldField extends TextareaField {
 
 	public function element() {
 		$element = parent::element();
-		$element->data('field', 'splitfield');
-		$element->data('template', $this->page()->template());
-		$element->data('route', c::get('plugin.splitfield.route', u() . '/splitfield') );
-		$element->data('delay', c::get('plugin.splitfield.preview.delay', 2000 ) );
+		$element->addClass('field-with-textarea');
+		if($this->buttons and !$this->readonly) {
+			$element->addClass('field-with-buttons');
+		}
+		$element->data('field', 'reveal');
+
 		return $element;
 	}
 }

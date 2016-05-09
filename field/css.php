@@ -1,8 +1,8 @@
 <style>
-.splitfield-content {
+.reveal-content {
 	position: relative;
 }
-.splitfield-preview {
+.reveal-preview {
 	background: #fff;
 	border: 2px solid #ddd;
 	margin-top: .5em;
@@ -10,36 +10,37 @@
 }
 
 /* Padding */
-.splitfield[data-padding="true"] .splitfield-preview {
+.reveal[data-padding="true"] ..reveal-preview-wrap {
 	padding: .5em;
 }
 
 /* Lock */
-.splitfield .splitfield-lock .fa-lock {
+.reveal .reveal-lock .fa-lock {
 	display: none;
 }
-.splitfield .splitfield-lock .fa-unlock {
+.reveal .reveal-lock .fa-unlock {
 	display: block;
 	opacity: .25;
 }
 
-.splitfield[data-show="true"] .splitfield-preview {
+.reveal[data-show="true"] .reveal-preview {
 	display: block;
 }
-.splitfield[data-lock="true"] .splitfield-lock .fa-lock {
+.reveal[data-lock="true"] .reveal-lock .fa-lock {
 	display: block;
 }
-.splitfield[data-lock="true"] .splitfield-lock .fa-unlock {
+.reveal[data-lock="true"] .reveal-lock .fa-unlock {
 	display: none;
 }
 
-.splitfield-editor {
+.reveal-editor {
 	position: relative;
 }
 
-.splitfield iframe {
+.reveal iframe {
 	border: none;
 	width: 100%;
+	vertical-align: bottom;
 }
 
 .field-name-<?php echo $field->name(); ?> .field-content {
@@ -57,21 +58,20 @@
 	border: 2px solid #ddd;
 }
 
-.splitfield-bar {
+.reveal-bar {
 	border-bottom: 1px solid #efefef;
-	margin: -.5em;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.splitfield-bar ul {
+.reveal-bar ul {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.splitfield-bar li {
+.reveal-bar li {
 	list-style: none;
 	padding: .5em 1.5em;
 	cursor: pointer;
@@ -80,17 +80,11 @@
 	text-align: center;
 }
 
-.splitfield-bar li:first-child {
+.reveal-bar li:first-child {
 	border-left: none;
 }
 
-.splitfield-bar-center {
+.reveal-bar-center {
 	flex-grow: 1;
 }
-
-.splitfield .field-button-link,
-.splitfield .field-button-email {
-	display: none;
-}
-
 </style>

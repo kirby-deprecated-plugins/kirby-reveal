@@ -1,12 +1,3 @@
-<?php
-#$form_data = kirby()->request()->data();
-#print_r($form_data);
-?>
-<style>
-h1 {
-	background: #eee;
-}
-
 /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 
 /**
@@ -427,7 +418,3 @@ textarea {
   -webkit-appearance: button; /* 1 */
   font: inherit; /* 2 */
 }
- 
-
-</style>
-<?php echo kirbytext('# Vi provar<br># Vi provar<br># Vi provar<br># Vi provar<br># Vi provar<br>') ?>

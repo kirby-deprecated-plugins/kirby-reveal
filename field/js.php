@@ -1,12 +1,12 @@
 <script>
 (function($) {
-	var splitfield_timeout = 0;
+	var reveal_timeout = 0;
 
 	// Init
-	$.fn.splitfield = function() {
+	$.fn.reveal = function() {
 		return this.each(function() {
 			var field = $(this);
-			var fieldname = 'splitfield';
+			var fieldname = 'reveal';
 
 			if(field.data( fieldname )) {
 				return true;
@@ -15,7 +15,7 @@
 			}
 
 			// Get data from template
-			var data = jQuery.parseJSON( field.find('.splitfield').attr('data-splitfield') );
+			var data = jQuery.parseJSON( field.find('.reveal').attr('data-reveal') );
 
 			// Init ajax
 			$.fn.ajax( field, data );
@@ -38,39 +38,39 @@
 
 	// Event close preview
 	$.fn.eventClose = function( field ) {
-		field.find('.splitfield-close' ).click(function() {
-			field.find('.splitfield').removeAttr('data-show');
+		field.find('.reveal-close' ).click(function() {
+			field.find('.reveal').removeAttr('data-show');
 		});
 	};
 
 	$.fn.eventBar = function( field, data ) {
-		field.find('.splitfield .field-buttons button').on("click", function(){
+		field.find('.reveal .field-buttons button').on("click", function(){
 			$.fn.updatePreview( field, data, $(this) );
 		});
 	};
 
 	// Event focus textarea
 	$.fn.eventFocus = function( field ) {
-		field.find('.splitfield textarea').on("focus", function(){
-			field.find('.splitfield').attr('data-show', true);
+		field.find('.reveal textarea').on("focus", function(){
+			field.find('.reveal').attr('data-show', true);
 			$.fn.setIframeHeight( field.find('iframe') );
 		});
 	};
 
 	// Event refresh preview
 	$.fn.eventRefresh = function( field, data ) {
-		field.find('.splitfield-refresh' ).click(function() {
+		field.find('.reveal-refresh' ).click(function() {
 			$.fn.ajax( field, data );
 		});
 	};
 
 	// Event lock preview
 	$.fn.eventLock = function( field ) {
-		field.find('.splitfield-lock' ).click(function() {
+		field.find('.reveal-lock' ).click(function() {
 			if( $.fn.lock(field) === "true" ) {
-				field.find('.splitfield').removeAttr('data-lock');
+				field.find('.reveal').removeAttr('data-lock');
 			} else {
-				field.find('.splitfield').attr('data-lock', true);
+				field.find('.reveal').attr('data-lock', true);
 			}
 		});
 	};
@@ -86,9 +86,9 @@
 	$.fn.eventBlur = function(field, data) {
 		$(document).mouseup(function(e) {
 			if( $.fn.lock(field) !== "true" ) {
-				var container = field.find('.splitfield');
+				var container = field.find('.reveal');
 				if (!container.is(e.target) && container.has(e.target).length === 0) {
-					field.find('.splitfield').removeAttr('data-show', true);
+					field.find('.reveal').removeAttr('data-show', true);
 				}
 			}
 		});
@@ -96,16 +96,16 @@
 
 	// Update preview with timeout
 	$.fn.updatePreview = function(field, data, obj) {
-		window.clearTimeout(splitfield_timeout);
-		splitfield_timeout = window.setTimeout(function(){
+		window.clearTimeout(reveal_timeout);
+		reveal_timeout = window.setTimeout(function(){
 			$.fn.ajax( field, data );
 		}, data.delay );
-		return splitfield_timeout;
+		return reveal_timeout;
 	};
 
 	// Get lock value
 	$.fn.lock = function( field ) {
-		return field.find('.splitfield').attr('data-lock');
+		return field.find('.reveal').attr('data-lock');
 	};
 
 	// Content textarea value
