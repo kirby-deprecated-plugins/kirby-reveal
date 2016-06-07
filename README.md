@@ -1,24 +1,58 @@
-# Kirby Reveal
+# Reveal
 
-**Textarea Live Preview**
-
-*Requre Kirby 2.3 beta*
+*Version 0.1 - BETA*
 
 ## In short
 
-- See changes live when you write, before they are saved.
-- The preview is very accurate. It get the content from the server with Ajax.
-- You can add a preview css. Have the preview look exact like the frontend.
-- You can add a preview template. Have the same surrounding elements as the frontend.
+- Live preview with Ajax.
+- See what you get before save.
+- Use the current page or add a custom template.
 
-## Installation
+![](docs/reveal.png)
 
-Add `reveal` folder into `/site/plugins/`.
+### Supports
 
-## More
+- Multi language.
+- Structure field.
+- Multiple instances.
+- `kirbytext`.
 
-- [Blueprint](docs/BLUEPRINT.md)
-- [Bar](docs/BAR.md)
-- [Css](docs/CSS.md)
+## Install
+
+### 1. Add the `reveal` folder in `/site/plugins/`.
+### 2. Add the field to the blueprint
+
+```
+fields:
+  my_field:
+    label: Reveal
+    type: reveal
+    selector: body .main
+```
+
+#### Type
+
+The `type` has to be `reveal`. It's an extended textarea field.
+
+#### Selector
+
+To know where the content should be placed in the preview, a [DOM selector](http://www.w3schools.com/cssref/css_selectors.asp) is needed.
+
+### 3. Usage
+
+Click the reveal textarea arrow to see the preview. Write something in the reveal textarea and watch the preview update live.
+
+## Advanced
+
+- [Preview](docs/PREVIEW.md)
+- [Selector](docs/PREVIEW.md)
 - [Template](docs/TEMPLATE.md)
-- [Options](docs/OPTIONS.md)
+- [Filter](docs/FILTER.md)
+
+## Requirements
+
+Kirby 2.3
+
+## License
+
+MIT

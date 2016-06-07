@@ -1,49 +1,59 @@
-# Css
+# CSS and Javascript
 
-Css files are there to make the previews as equal to the site as possible.
+If you use a custom template and want to use CSS or javascript, simply use the built in functions for it.
 
-To "emulate" your real enviroment you can have the same css in the preview as well.
+https://getkirby.com/docs/cheatsheet/helpers/css
+https://getkirby.com/docs/cheatsheet/helpers/js
 
-## Files and folders
+In all examples below, the second argument is set as default and you can change that.
 
-By default your css filepath will look like this:
+## Template root
 
-```
-[path]/[template].[fieldname].php
-```
-
-Translated into a real filepath it might look something like this:
-
+If you want to use templates, you can set your own folder path:
 
 ```
-/site/assets/css/reveal/mytemplate.myfieldname.css
+c::set('plugin.reveal.template.root', kirby()->roots()->snippets() . DS . 'reveal' );
 ```
 
-## Options
+## Template fallback
 
-### Path
+If a template file is not set in the blueprint or if it's missing, it will fetch the html of the current page.
 
-You can change the path to your css files:
+## Template padding
+
+In the preview window it can sometimes be good to add some additional space around the preview. You can do that.
 
 ```
-c::set('plugin.reveal.path.css', kirby()->roots()->assets() . DS . 'css' . DS . 'reveal' );
+c::get('plugin.reveal.template.padding', '1em');
 ```
 
-### Fallback
+## Css root
 
-If the css file does not exists, a fallback takes over.
+If you want to use css, you can set your own folder path:
 
-```php
-c::set('plugin.reveal.fallback.css', kirby()->roots()->plugins() . DS . 'reveal' . DS . 'assets' . DS . 'css' . DS . 'normalize.css' ); // Full file path to a php snippet
+```
+c::get('plugin.reveal.css.root', kirby()->roots()->assets() . DS . 'css' . DS . 'reveal');
 ```
 
-If the option is not set it will use [normalize.css](https://necolas.github.io/normalize.css/) when generating the preview.
+## Css fallback
 
+If the css is missing or not set, you can add a fallback path for it:
 
-## Advanced
+```
+c::get('plugin.reveal.css.fallback', self::fallbackPath() . DS . 'normalize.min.css');
+```
 
-### Gulp
+If the fallback file does not exist, it will preview the content without css.
 
-If you don't want to use the same css file in the panel as on the frontend, I recommend you to use [Gulp](http://gulpjs.com/) together with something like [Sass](https://www.npmjs.com/package/gulp-sass). In fact, you can use any preprocessor for css files as you want.
+## Delay
 
-The benefit is that you can save just the content css for the preview, which would probably speed things up.
+When the preview is updated, a new server request is made. To not crasch the server a delay is needed.
+
+*The delay is only fired when you do nothing in the textarea during that time, or press enter.*
+
+```
+c::set('plugin.reveal.delay', 1000 ); // (milliseconds)
+```
+
+**High value** - If you care about your server, set a high value.
+**Low value** - If you care about speed, set a low value.

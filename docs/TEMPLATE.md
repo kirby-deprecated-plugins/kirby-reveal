@@ -1,54 +1,64 @@
-# Template
+# Custom template
 
-**Templates are there to help you make the css work well in the preview.**
+If no template is set in the blueprint it will fetch the html of the current page.
 
-You probably have your frontend content inside some div elements.
+**Custom template folder path**
 
-To "emulate" your real enviroment you can have the same elements in the preview as well. To make that possible, use templates.
-
-## Files and folders
-
-By default your template filepath will look like this:
+The value below is default.
 
 ```
-[path]/[template].[fieldname].php
+c::set('plugin.reveal.template.root', kirby()->roots()->snippets() . DS . 'reveal' );
 ```
 
-Translated into a real filepath it might look something like this:
-
-
-```
-/site/snippets/reveal/mytemplate.myfieldname.php
-```
-
-## Snippet
-
-Your template file is actually a snippet.
-
-The snippet should include `{{reveal}}`. It will be replaced with the textarea content, in the preview.
-
-```php
-<div class="wrap">
-  <div class="content">{{reveal}}</div>
-</div>
-```
-
-## Options
-
-### Path
-
-You can change the path to your templates:
+**Path default result**
 
 ```
-c::set('plugin.reveal.path.template', kirby()->roots()->snippets() . DS . 'reveal');
+/site/snippets/reveal
 ```
 
-### Fallback
+## Blueprint
 
-If the template file does not exists, a fallback takes over.
+**You need to add `template` as shown below:**
 
-```php
-c::set('plugin.reveal.fallback.template' ): // Full file path to a php snippet
+```
+fields:
+  my_field:
+    label: Reveal
+    type: reveal
+    template: my_template
 ```
 
-If the option is not set it will use `{{reveal}}`. It will be replaced with the textarea content, in the preview.
+**Template**
+
+- You can not add the `.php` extension, just the template name, like a snippet.
+- You can not add a path here, just a name.
+
+**The result will be something like this:**
+
+```
+/site/snippets/reveal/my_template.php
+```
+
+## Code in the template
+
+### Functions and classes
+
+Inside the template file you have access to all the Kirby functions and classes.
+
+### Objects and variables
+
+**These are available in the template:**
+
+```
+$site // site()
+$pages // site()->children()
+$page // The page content object
+$language // Language code
+```
+
+### CSS and Javascript
+
+If you use a custom template and want to use CSS or javascript, simply use the built in functions for it.
+
+https://getkirby.com/docs/cheatsheet/helpers/css
+https://getkirby.com/docs/cheatsheet/helpers/js

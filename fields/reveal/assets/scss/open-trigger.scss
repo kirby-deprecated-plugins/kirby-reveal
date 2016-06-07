@@ -1,0 +1,53 @@
+.reveal-open-trigger {
+	position: absolute;
+	z-index: 1000;
+	right: 0;
+	
+	text-align: center;
+	padding: .5em 0;
+	display: none;
+
+	margin-right: -2em;
+	width: 2em;
+	font-size: 1.333em;
+
+	@media screen and (min-width: 50em ) {
+		display: block;
+	}
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+// Hide active
+[data-reveal-open] {
+	.reveal-open-trigger {
+		display: none;
+	}
+}
+
+// Resize arrow on mobile
+.reveal-open {
+	.reveal-open-trigger {
+		width: 1.5em;
+		margin-right: -1.5em;
+		font-size: 1em;
+
+		@media screen and ( min-width: 83em ) {
+			width: 2em;
+			font-size: 1.3333em;
+			margin-right: -2em;
+		}
+	}
+}
+
+.modal .reveal-open-trigger {
+	width: 1.5em;
+	margin-right: -1.5em;
+	font-size: 1em;
+}
+
+/*.modal .reveal-open-trigger {
+	display: none;
+}*/
