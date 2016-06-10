@@ -1,3 +1,14 @@
+var RevealActions = (function () {
+	var fn = {};
+
+	fn.init = function( field, data ) {
+		RevealClose.action(field);
+		RevealIframe.setTemplate(field, data);
+		RevealEvents.init( field, data );
+	};
+
+	return fn;
+})();
 var RevealClose = (function () {
 	var fn = {};
 
@@ -19,6 +30,33 @@ var RevealClose = (function () {
 		$('.reveal').removeAttr('data-reveal-open');
 		$('.reveal').next().removeAttr('data-reveal-active');
 		$('body').removeClass('reveal-open');
+	};
+
+	return fn;
+})();
+var RevealData = (function () {
+	var fn = {};
+
+	// Event
+	fn.get = function( field ) {
+		var data = field.find('.reveal').attr('data-reveal');
+		return jQuery.parseJSON( data );
+	};
+
+	return fn;
+})();
+var RevealEvents = (function () {
+	var fn = {};
+
+	fn.init = function( field, data ) {
+		RevealRefresh.event( field, data );
+		RevealModal.event( field, data );
+		RevealTextarea.onClick( field, data );
+		RevealKey.event(field, data);
+		RevealOpen.event(field, data);
+		RevealClose.event(field);
+		RevealResize.event( field );
+		RevealIframe.eventLoaded( field, data );
 	};
 
 	return fn;
@@ -227,7 +265,6 @@ var RevealResize = (function () {
 	return fn;
 })();
 (function($) {
-	// Init
 	$.fn.reveal = function() {
 		return this.each(function() {
 			var field = $(this);
@@ -239,33 +276,9 @@ var RevealResize = (function () {
 				field.data( fieldname, true );
 			}
 
-			$.fn.actions( field, $.fn.getData( field ) );
+			RevealActions.init( field, RevealData.get( field ) );
 		});
 	};
-
-	$.fn.getData = function( field ) {
-		var data_str = field.find('.reveal').attr('data-reveal');
-		return jQuery.parseJSON( data_str );
-	}
-
-	$.fn.actions = function( field, data ) {
-		RevealClose.action(field);
-		RevealIframe.setTemplate(field, data);
-		$.fn.events( field, data );
-	};
-
-	// Events
-	$.fn.events = function( field, data ) {
-		RevealRefresh.event( field, data );
-		RevealModal.event( field, data );
-		RevealTextarea.onClick( field, data );
-		RevealKey.event(field, data);
-		RevealOpen.event(field, data);
-		RevealClose.event(field);
-		RevealResize.event( field );
-		RevealIframe.eventLoaded( field, data );
-	};
-
 })(jQuery);
 var RevealTextarea = (function () {
 	var fn = {};

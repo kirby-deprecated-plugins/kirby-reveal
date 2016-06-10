@@ -1,6 +1,6 @@
 # Reveal
 
-*Version 0.1 - BETA*
+*Version 0.2 - BETA*
 
 ## In short
 
@@ -48,6 +48,18 @@ Click the reveal textarea arrow to see the preview. Write something in the revea
 - [Selector](docs/PREVIEW.md)
 - [Template](docs/TEMPLATE.md)
 - [Filter](docs/FILTER.md)
+
+## Changelog
+
+### 0.2 beta
+
+- Fixed uri problem on multi language.
+- Fixed language code problem on multi language.
+- Fixed javascript collision issues.
+
+### 0.1 beta
+
+- Initial release
 
 ## Requirements
 

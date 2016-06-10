@@ -17,7 +17,7 @@ class revealField extends TextareaField {
 			'root' => u(),
 			'delay' => c::get('plugin.reveal.delay', 1000 ),
 			'selector' => $this->selector(),
-			'language' => site()->language()->code(),
+			'language' => site()->language(),
 			'template' => $this->__call('template', null),
 			'filter' => ( $this->filter() === false ) ? 0 : 1
 		];

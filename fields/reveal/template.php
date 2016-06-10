@@ -5,12 +5,6 @@
 }
 </style>
 
-<?php
-#echo "#" . $field->selector() . "#";
-#echo "#" . site()->language() . "#";
-#echo $page->uri();
-?>
-
 <div class="reveal" data-reveal='<?php echo $data; ?>'>
 	<div class="reveal-open-trigger">
 		<i class="fa fa-chevron-right"></i>
