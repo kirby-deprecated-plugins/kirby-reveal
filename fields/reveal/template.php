@@ -1,33 +1,6 @@
-<style>
-.field-name-<?php echo $field->name(); ?> .reveal-iframe {
-	padding-top: <?php echo RevealTemplate::padding($field); ?>;
-	padding-left: <?php echo RevealTemplate::padding($field); ?>;
-}
-</style>
-
-<div class="reveal" data-reveal='<?php echo $data; ?>'>
-	<div class="reveal-open-trigger">
-		<i class="fa fa-chevron-right"></i>
-	</div>
-
-	<div class="reveal-preview">
-		<div class="reveal-bar">
-			<div class="reveal-bar-left">
-				<div class="reveal-refresh-trigger reveal-button">
-					<i class="fa fa-repeat"></i>
-				</div>
-			</div>
-			<div class="reveal-bar-center">
-				<strong><?php echo $field->label; ?></strong> <em>[<?php echo $field->name(); ?>]</em>
-			</div>
-			<div class="reveal-bar-right">
-				<div class="reveal-close-trigger reveal-button">
-					<i class="fa fa-times"></i>
-				</div>
-			</div>
-		</div>
-		<div class="reveal-iframe">
-			<iframe id="iframe-<?php echo $field->name(); ?>"></iframe>
-		</div>
+<div class="rvl-preview">
+	<?php #include __DIR__ . DS . 'bar.php'; ?>
+	<div class="rvl-iframe">
+		<iframe src="<?php echo $page->url(); ?>"></iframe>
 	</div>
 </div>

@@ -1,0 +1,17 @@
+.rvl-action {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 4em;
+	height: 3em;
+	width: 4em;
+	text-align: center;
+	line-height: 3em;
+	color: #fff;
+	cursor: pointer;
+	border-left: 1px solid #555;
+
+	&:hover {
+		color: #999;
+	}
+}

@@ -1,40 +1,26 @@
 <?php
-class revealField extends TextareaField {
+class RevealField extends BaseField {
+	static public $fieldname = 'reveal';
 	static public $assets = array(
+		'js' => array(
+			'dist/script.min.js',
+		),
 		'css' => array(
 			'style.css',
-		),
-		'js' => array(
-			'dist/concat.min.js',
 		)
 	);
-	public function content() {
-		$data = [
-			'id' => $this->page()->id(),
-			'uri' => $this->page()->uri(),
-			'fieldkey' => $this->name(),
-			'template' => $this->page()->template(),
-			'root' => u(),
-			'delay' => c::get('plugin.reveal.delay', 1000 ),
-			'selector' => $this->selector(),
-			'language' => site()->language(),
-			'template' => $this->__call('template', null),
-			'filter' => ( $this->filter() === false ) ? 0 : 1
-		];
 
+	public function input() {
 		$html = tpl::load( __DIR__ . DS . 'template.php', $data = array(
 			'field' => $this,
-			'page' => $this->page(),
-			'data' => json_encode($data)
+			'page' => $this->page()
 		));
-
-		$html .= parent::content();
 		return $html;
 	}
 
 	public function element() {
 		$element = parent::element();
-		$element->data('field', 'reveal');
+		$element->data('field', self::$fieldname);
 		return $element;
 	}
 }

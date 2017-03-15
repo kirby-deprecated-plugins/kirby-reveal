@@ -10,7 +10,8 @@
 				field.data( fieldname, true );
 			}
 
-			RevealActions.init( field, RevealData.get( field ) );
+			rvl.action(field);
+			
 		});
 	};
 })(jQuery);

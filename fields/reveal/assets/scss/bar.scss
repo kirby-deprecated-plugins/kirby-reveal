@@ -1,0 +1,40 @@
+.rvl-bar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #eee;
+	height: 3em;
+	color: #000;
+	border-bottom: 2px solid #ddd;
+	user-select: none;
+
+	.rvl-button:hover {
+		color: #999;
+	}
+}
+
+.rvl-bar-center {
+	flex-grow: 1;
+	padding: 0 1em;
+}
+
+.rvl-bar-left {
+	.rvl-button {
+		border-left: 1px solid #ddd;
+		border-right: 1px solid #ddd;
+	}
+}
+
+.rvl-bar-right {
+	.rvl-button {
+		border-left: 1px solid #ddd;
+	}
+}
+
+.rvl-bar-left,
+.rvl-bar-right {
+	cursor: pointer;
+	width: 4em;
+	text-align: center;
+	line-height: calc( 3em - 2px );
+}

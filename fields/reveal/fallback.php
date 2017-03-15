@@ -1,1 +1,0 @@
-<?php $visit = site()->visit( $uri, $language); ?>
