@@ -12,6 +12,7 @@ var rvl = (function () {
 				$('.bars').addClass('rvl-active');
 				$('.rvl-action').html('<i class="fa fa-toggle-on"></i>');
 			}
+			$(window).trigger('resize');
 		});
 	};
 
