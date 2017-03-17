@@ -1,4 +1,12 @@
 .rvl-active {
+	&.bars {
+		@media screen and (max-width: 50em) {
+			height: calc(50% - 1.5em);
+			overflow-y: auto;
+			min-height: calc(50% - 1.5em);
+		}
+	}
+
 	.sidebar,
 	&.bars-with-sidebar-left:before {
 		@media screen and (min-width: 50em) {

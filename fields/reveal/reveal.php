@@ -21,6 +21,7 @@ class RevealField extends BaseField {
 	public function element() {
 		$element = parent::element();
 		$element->data('field', self::$fieldname);
+		$element->data('refresh', c::get('plugin.reveal.refresh', 2000));
 		return $element;
 	}
 }

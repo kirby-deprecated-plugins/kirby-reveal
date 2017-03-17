@@ -1,19 +1,35 @@
-var rvl = (function () {
+var rvlAction = (function () {
 	var fn = {};
 
-	fn.action = function( field ) {
+	fn.init = function() {
 		$('.topbar').append('<div class="rvl-action"><i class="fa fa-toggle-off"></i></div>');
 
-		$('.rvl-action').click(function() {
+		if(localStorage.getItem('rvl-active') !== null) {
+			rvlAction.setActive();
+		}
+
+		$('.rvl-action').click(function(e) {
+			e.preventDefault();
 			if($('.bars').hasClass('rvl-active')) {
-				$('.bars').removeClass('rvl-active');
-				$('.rvl-action').html('<i class="fa fa-toggle-off"></i>');
+				rvlAction.setInactive();
 			} else {
-				$('.bars').addClass('rvl-active');
-				$('.rvl-action').html('<i class="fa fa-toggle-on"></i>');
+				rvlAction.setActive();
 			}
 			$(window).trigger('resize');
+			$('body').disableSelection();
 		});
+	};
+
+	fn.setActive = function() {
+		$('.bars').addClass('rvl-active');
+		$('.rvl-action').html('<i class="fa fa-toggle-on"></i>');
+		localStorage.setItem('rvl-active', '1');
+	};
+
+	fn.setInactive = function() {
+		$('.bars').removeClass('rvl-active');
+		$('.rvl-action').html('<i class="fa fa-toggle-off"></i>');
+		localStorage.removeItem('rvl-active');
 	};
 
 	return fn;

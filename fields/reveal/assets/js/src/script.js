@@ -3,6 +3,7 @@
 		return this.each(function() {
 			var field = $(this);
 			var fieldname = 'reveal';
+			var scrolltimer = null;
 
 			if(field.data( fieldname )) {
 				return true;
@@ -10,8 +11,9 @@
 				field.data( fieldname, true );
 			}
 
-			rvl.action(field);
-			
+			rvlAction.init();
+			rvlTrigger.init(field);
+			rvlScroll.init(scrolltimer);
 		});
 	};
 })(jQuery);

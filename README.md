@@ -1,32 +1,14 @@
-# Kirby Boiler Readme
+# Kirby Reveal
 
-***Version 0.3 - [Changelog](docs/changelog.md)***
+***Version 0.4 - [Changelog](docs/changelog.md)***
 
 Splitscreen preview of the site in the panel.
 
+- Support for single or multi language.
+- Support for custom urls which is useful for routed urls.
+- Saves if the preview is active or not in the local storage.
+
 ![Screenshot](docs/screenshot.png)
-
-## Thoughts behind the complete rewrite
-
-### Splitview failed
-
-My first approach was called Splitview. It failed because I did everything from outside the panel. I simply could not keep track of everything that was happening in the panel when the urls changed. It caused many problems.
-
-### Reveal 0.2 failed
-
-My second approach was Reveal 0.2. It included ajax and other fancy stuff. It was an extended textarea field. The plugin could only previewed textareas, not other fields. It also went a bit overhead with css and javascript in order to work well.
-
-### Current state
-
-After some time and thought, I have come to a conclusion that if it's going to be done correctly, the whole page needs to be previewed and take all fields into account. By not only targeting the textarea would make it possible for any field to be previewed.
-
-In this version there are no options and no ajax. It refreshes on save or refresh.
-
-#### Ajax in the future
-
-I still have in mind to include ajax again. This time my idea goes around the `$_SESSION` where all the temporary fields are stored. The problem is that I can't manipulate already created page objects which I want to do to replace the fields. If I could do that I could use this function to generate the page: https://github.com/jenstornell/kirby-secrets/wiki/Snippet-preview
-
-Therefor I wait with Ajax for now. The field still works without it, but you need to save to see the changes.
 
 ### [Installation instructions](docs/install.md)
 
@@ -44,6 +26,26 @@ fields:
 ## Usage
 
 Click the switch button to the left of the search icon in the panel. It's an on/off toggle of the splitscreen preview.
+
+### Read more about the **[core engine](docs/engine.md)**.
+
+## Options
+
+The following options can be set in your `/site/config/config.php` file:
+
+```php
+c::set('plugin.reveal.refresh', 2000);
+```
+
+### timeout
+
+The iframe will never refresh more often than this time. It's set in miliseconds so `2000` is 2 seconds.
+
+## Troubleshooting
+
+Kirby Reveal will not take [page models](https://getkirby.com/docs/developer-guide/advanced/models) into account. If you are using a page model that replace your field value with another value, the preview will still generate this value without the model loaded for it.
+
+Controllers, page methods etc. will work just fine. 
 
 ## Requirements
 
