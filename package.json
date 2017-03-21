@@ -2,7 +2,7 @@
   "name": "kirby-reveal",
   "description": "Splitscreen preview of the site in the panel",
   "author": "Jens Törnell <jens.tornell@gmail.com>",
-  "version": "0.4",
+  "version": "0.5",
   "type": "kirby-plugin",
   "license": "MIT"
 }

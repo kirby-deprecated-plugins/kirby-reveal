@@ -1,5 +1,12 @@
 # Changelog
 
+**0.5**
+
+- When adding `0` to the `plugin.reveal.refresh` option, it will be disabled.
+- Updated iframe trigger. It now fires more often.
+- On a multi language installation, the default language preview updates live. Other languages needs a save action to be updated.
+- Does not try to live update when iframe is not active/visible.
+
 **0.4**
 
 - Added support for mobile devices, narrow screens.

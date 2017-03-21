@@ -17,6 +17,7 @@ var rvlAction = (function () {
 			}
 			$(window).trigger('resize');
 			$('body').disableSelection();
+			rvlTrigger.refresh();
 		});
 	};
 

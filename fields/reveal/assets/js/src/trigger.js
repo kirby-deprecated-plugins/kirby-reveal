@@ -3,32 +3,49 @@ var rvlTrigger = (function () {
 	var timeout = 0;
 	var timer = null;
 	var data_refresh = 0;
+	var trigger = false;
 
 	fn.init = function(field) {
 		data_refresh = field.data('refresh');
-		rvlTrigger.events();
+		rvlTrigger.events(field);
 	};
 
-	fn.events = function() {
-		$('.field input, .field textarea').first().blur(function(e) {
-			fn.cases();
+	fn.events = function(field) {
+		$('.field input, .field textarea').blur(function(e) {
+			if($('.bars').hasClass('rvl-active')) {
+				if(trigger == false) {
+					fn.refresh();
+				}
+			}
 		});
 
 		$('.field-content input[type="checkbox"], .field-content input[type="radio"]').click(function(e) {
-			fn.trigger();
+			if($('.bars').hasClass('rvl-active')) {
+				fn.trigger(true);
+				fn.refresh();
+				trigger = false;
+			}
 		});
 
 		$('.field-content select').change(function(e) {
-			fn.trigger();
+			if($('.bars').hasClass('rvl-active')) {
+				fn.trigger(true);
+				fn.refresh();
+				trigger = false;
+			}
 		});
 
 		$('.field-content input, .field-content textarea').on('input propertychange', function() {
-			fn.trigger();
-			$(this).focus();
+			if($('.bars').hasClass('rvl-active')) {
+				fn.trigger(true);
+				fn.cases();
+				$(this).focus();
+			}
 		});
 	};
 
-	fn.trigger = function() {
+	fn.trigger = function(type) {
+		trigger = type;
 		$('.field-content input, .field-content textarea').trigger('blur');
 	};
 
@@ -39,12 +56,12 @@ var rvlTrigger = (function () {
 		}
 		if(timeout > $.now()) {
 			timer = setTimeout(function(){
-				console.log('TIMEOUT trigger');
 				fn.cases();
 			}, data_refresh);
 		} else {
 			timeout = $.now() + data_refresh;
 			fn.refresh();
+			trigger = false;
 		}
 	};
 

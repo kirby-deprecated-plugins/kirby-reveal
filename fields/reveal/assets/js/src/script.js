@@ -11,8 +11,10 @@
 				field.data( fieldname, true );
 			}
 
+			if(field.data('refresh') != 0) {
+				rvlTrigger.init(field);
+			}
 			rvlAction.init();
-			rvlTrigger.init(field);
 			rvlScroll.init(scrolltimer);
 		});
 	};

@@ -2,7 +2,6 @@ var rvlMessage = (function () {
 	var fn = {};
 
 	fn.activate = function() {
-		console.log('asd');
 		$('.rvl-notify').css('top', 0);
 
 		setTimeout(function(){

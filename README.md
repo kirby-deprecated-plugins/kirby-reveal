@@ -1,12 +1,10 @@
 # Kirby Reveal
 
-***Version 0.4 - [Changelog](docs/changelog.md)***
+***Version 0.5 - [Changelog](docs/changelog.md)***
 
 Splitscreen preview of the site in the panel.
 
-- Support for single or multi language.
-- Support for custom urls which is useful for routed urls.
-- Saves if the preview is active or not in the local storage.
+- Live preview when writing.
 
 ![Screenshot](docs/screenshot.png)
 
@@ -36,6 +34,8 @@ The following options can be set in your `/site/config/config.php` file:
 ```php
 c::set('plugin.reveal.refresh', 2000);
 ```
+
+If it's set to `0`, it will no longer autorefresh. It will only refresh on save.
 
 ### timeout
 
